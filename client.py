@@ -16,5 +16,6 @@ while(True):
      False
      print("Bye!")
      break
-print(secretDictionary)
+#print(secretDictionary)
+print(secretDictionary.get(key))
 
