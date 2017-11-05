@@ -9,12 +9,12 @@ db = MySQLdb.connect("localhost","root","hahaha","main")
 cursor = db.cursor(MySQLdb.cursors.DictCursor)
 key=raw_input("Enter a key that you want to search")
 print(key)
-sql1= "SELECT SECRET_VALUE FROM SECRETS WHERE SECRET_KEY='%s'" % (key)
+sql1= "SELECT * FROM SECRETS WHERE SECRET_KEY LIKE '%s'" % ("%"+key+"%")
 
 try:
    # Execute the SQL command
    value = cursor.execute(sql1)
-   result = cursor.fetchone()
+   result = cursor.fetchall()
 #   print(value)
 #   print("printing all the values"
    print(result)

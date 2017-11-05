@@ -3,7 +3,7 @@
 import MySQLdb
 def create_database():
   # Open database connection
-  db = MySQLdb.connect("localhost","root","hahaha","main")
+  db = MySQLdb.connect("localhost","riya","hahaha","main")
 
   # prepare a cursor object using cursor() method
   cursor = db.cursor()
@@ -28,7 +28,7 @@ def create_database():
 
 def insert_database(key,value):
   # Open database connection
-  db = MySQLdb.connect("localhost","root","hahaha","main")
+  db = MySQLdb.connect("localhost","riya","hahaha","main")
    
   # prepare a cursor object using cursor() method
   cursor = db.cursor()
@@ -54,15 +54,16 @@ def insert_database(key,value):
 
 def retrieve_database(key):
   # Open database connection
-  db = MySQLdb.connect("localhost","root","hahaha","main")
+  db = MySQLdb.connect("localhost","riya","hahaha","main")
   
   # prepare a cursor object using cursor() method
-  cursor = db.cursor(MySQLdb.cursors.DictCursor)
-  sql = "SELECT SECRET_VALUE FROM SECRETS WHERE SECRET_KEY='%s'" % (key) 
+  #cursor = db.cursor(MySQLdb.cursors.DictCursor)
+  cursor = db.cursor()
+  sql = "SELECT * FROM SECRETS WHERE SECRET_KEY LIKE '%s'" % ("%"+key+"%") 
   try:
      # Execute the SQL command
      cursor.execute(sql)
-     result_set=cursor.fetchone()
+     result_set=cursor.fetchall()
      # Commit your changes in the database
      db.commit()
   except:
